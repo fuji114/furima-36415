@@ -1,24 +1,63 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| email              | string  | null: false |
+| password           | string  | null: false |
+| nickname           | string  | null: false |
+| family_name        | string  | null: false |
+| first_name         | string  | null: false |
+| family_name_kana   | string  | null: false |
+| first_name_kana    | string  | null: false |
+| birthday           | string  | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :buys
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| image                | string     | null: false                    |
+| product_name         | string     | null: false                    |
+| product_description  | string     | null: false                    |
+| category             | string     | null: false                    |
+| status_id            | string     | null: false                    |
+| invoice_price        | string     | null: false                    |
+| invoice_territory    | string     | null: false                    |
+| days_to_delivery     | string     | null: false                    |
+| product_price        | string     | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :buy
 
-* Deployment instructions
 
-* ...
+## buys テーブル
+
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| card_number        | string     | null: false                    |
+| card_expiry_month  | string     | null: false                    |
+| card_expiry_year   | string     | null: false                    |
+| card_cvc           | string     | null: false                    |
+| postal_code        | string     | null: false                    |
+| prefectures        | string     | null: false                    |
+| city               | text       | null: false                    |
+| block              | text       | null: false                    |
+| building           | text       | null: false                    |
+| phone_number       | string     | null: false                    |
+| user               | string     | null: false, foreign_key: true |
+| items              | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
