@@ -6,7 +6,7 @@
 | ------------------ | ------- | ------------------------------ |
 | email              | string  | null: false, unique: true      |
 | encrypted_password | string  | null: false                    |
-| nickname           | string  | null: false, unique: true      |
+| nickname           | string  | null: false                    |
 | family_name        | string  | null: false                    |
 | first_name         | string  | null: false                    |
 | family_name_kana   | string  | null: false                    |
@@ -25,7 +25,7 @@
 | -------------------- | ---------- | ------------------------------ |
 | product_name         | string     | null: false                    |
 | product_description  | text       | null: false                    |
-| category             | string     | null: false                    |
+| category_id          | integer    | null: false                    |
 | status_id            | integer    | null: false                    |
 | invoice_price_id     | integer    | null: false                    |
 | invoice_territory_id | integer    | null: false                    |
@@ -44,7 +44,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
-| items              | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -55,15 +55,15 @@
 
 ## address テーブル
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| postal_code        | string     | null: false                    |
-| prefectures        | string     | null: false                    |
-| city               | text       | null: false                    |
-| block              | text       | null: false                    |
-| building           | text       | null: false                    |
-| phone_number       | string     | null: false                    |
-| order              | references | null: false, foreign_key: true |
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| postal_code          | string     | null: false                    |
+| invoice_territory_id | integer    | null: false                    |
+| city                 | string     | null: false                    |
+| block                | string     | null: false                    |
+| building             | string     | null: false                    |
+| phone_number         | string     | null: false                    |
+| order                | references | null: false, foreign_key: true |
 
 ### Association
 
