@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_many :orders
 
 
 ## items テーブル
@@ -37,17 +37,13 @@
 ### Association
 
 - belongs_to :user
-- has_one :buy
+- has_one :order
 
 
-## buys テーブル
+## orders テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| card_number        | string     | null: false                    |
-| card_expiry_month  | string     | null: false                    |
-| card_expiry_year   | string     | null: false                    |
-| card_cvc           | string     | null: false                    |
 | postal_code        | string     | null: false                    |
 | prefectures        | string     | null: false                    |
 | city               | text       | null: false                    |
@@ -61,3 +57,18 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one :card
+
+
+## cards テーブル
+
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| card_number        | string     | null: false                    |
+| card_expiry_month  | string     | null: false                    |
+| card_expiry_year   | string     | null: false                    |
+| card_cvc           | string     | null: false                    |
+
+### Association
+
+- belongs_to :item
