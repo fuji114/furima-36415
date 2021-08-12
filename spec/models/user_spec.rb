@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
     it 'メールアドレスは、@を含む必要があること' do
       @user.email = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
 
     it 'パスワードが必須' do
@@ -59,7 +59,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-
   describe '本人情報確認' do
     it '名前(全角)は、名字が必須' do
       @user.family_name = ''
@@ -76,7 +75,7 @@ RSpec.describe User, type: :model do
     it '名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須' do
       @user.family_name = 'tanaka'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Family name is invalid")
+      expect(@user.errors.full_messages).to include('Family name is invalid')
     end
 
     it '名前カナ(全角)は、名字が必須' do
@@ -94,7 +93,7 @@ RSpec.describe User, type: :model do
     it '名前カナ(全角)は、全角（カタカナ）での入力が必須' do
       @user.family_name_kana = 'たかはし'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Family name kana is invalid")
+      expect(@user.errors.full_messages).to include('Family name kana is invalid')
     end
 
     it '生年月日が必須' do
