@@ -1,20 +1,17 @@
 class Item < ApplicationRecord
-  belongs_to :user
-  has_one_attached :image
-
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre
+  belongs_to :category,:status,:invoice_price,:invoice_territory,:days_to_delivery
 
-  validates :genre_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  has_one_attached :image
+  belongs_to :user
+  
 
   with_options presence: true do
     validates :product_name
     validates :product_description
-    validates :category_id
-    validates :status_id
-    validates :invoice_price_id
-    validates :invoice_territory_id
-    validates :days_to_delivery_id
     validates :product_price
   end
+
+  validates :category_id,:status_id,:invoice_price_id,:invoice_territory_id,:days_to_delivery_id, numericality: { other_than: 1 , message: "can't be blank"} 
+
 end
