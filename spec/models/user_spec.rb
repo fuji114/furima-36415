@@ -5,13 +5,11 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-
   context '新規登録ができる時' do
     it '新規登録' do
       expect(@user).to be_valid
     end
   end
-
 
   context '新規登録ができない時' do
     it 'nickname:必須' do
@@ -135,5 +133,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-
