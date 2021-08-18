@@ -4,6 +4,8 @@ class Address < ApplicationRecord
 
   belongs_to :order
 
+  validates :invoice_territory_id, numericality: { other_than: 1, message: "can't be blank" }
+
   with_options presence: true do
     validates :postal_code
     validates :city
