@@ -8,6 +8,7 @@ class Item < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+  has_one :order
 
   validates :category_id, :status_id, :invoice_price_id, :invoice_territory_id, :days_to_delivery_id,
             numericality: { other_than: 1, message: "can't be blank" }
