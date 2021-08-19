@@ -8,7 +8,7 @@ class OrderAddress
     validates :city, :block, :item_id, :user_id
     validates :phone_number, numericality: {only_integer: true, message: 'is invalid'}
   end
-  validates :invoice_territory_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :invoice_territory_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
     # 寄付情報を保存し、変数orderに代入する

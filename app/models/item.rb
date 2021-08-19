@@ -10,14 +10,15 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
 
-  validates :category_id, :status_id, :invoice_price_id, :invoice_territory_id, :days_to_delivery_id,
-            numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, :status_id, :invoice_price_id, :invoice_territory_id, :days_to_delivery_id, numericality: { other_than: 1, message: "can't be blank" }
 
   with_options presence: true do
     validates :image
     validates :product_name
     validates :product_description, length: { maximum: 1000 }
-    validates :product_price, format: { allow_blank: true }, inclusion: { in: 300..9_999_999 }, numericality: { only_integer: true }
   end
+
+  validates :product_price, numericality: { only_integer: true }, inclusion: { in: 300..9_999_999 }, allow_blank: true
+  validates :product_price, presence: true
   
 end
