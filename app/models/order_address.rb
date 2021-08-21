@@ -6,18 +6,18 @@ class OrderAddress
 
   validates :token, presence: true
 
-  with_options presence: true do
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :city, :block, :item_id, :user_id
-    validates :phone_number, numericality: {only_integer: true, message: 'is invalid'}
-  end
+  
+  validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}, allow_blank: true
+  validates :postal_code, presence: true
   validates :invoice_territory_id, numericality: {other_than: 1, message: "can't be blank"}
+  with_options presence: true do
+    validates :city, :block, :item_id, :user_id
+  end
+  validates :phone_number, numericality: {only_integer: true, message: 'is invalid'}, length: { in: 10..11 }, allow_blank: true
+  validates :phone_number, presence: true
 
   def save
-    # 寄付情報を保存し、変数orderに代入する
     order = Order.create(item_id: item_id, user_id: user_id)
-    # 住所を保存する
-    # order_idには、変数orderのidと指定する
     Address.create(postal_code: postal_code, invoice_territory_id: invoice_territory_id, city: city, block: block, building: building, phone_number: phone_number, order_id: order.id)
   end
 
