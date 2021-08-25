@@ -5,9 +5,9 @@ class OrderAddress
   with_options presence: true do
     validates :token, :postal_code, :invoice_territory_id, :city, :block, :phone_number, :item_id, :user_id
   end
-  validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }, allow_blank: true
-  validates :phone_number, numericality: { only_integer: true, message: 'is invalid' }, length: { in: 10..11 }, allow_blank: true
-  validates :invoice_territory_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'が無効です  ハイフン（-）を含める' }, allow_blank: true
+  validates :phone_number, numericality: { only_integer: true, message: 'が無効です' }, length: { in: 10..11 }, allow_blank: true
+  validates :invoice_territory_id, numericality: { other_than: 1, message: "を入力してください" }
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

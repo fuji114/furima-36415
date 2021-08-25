@@ -7,12 +7,11 @@ class User < ApplicationRecord
   has_many :orders
 
   with_options presence: true do
-    validates :nickname
-    validates :family_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
-    validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
-    validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-    validates :birth_date
+    validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birth_date
   end
-  validates :password, :password_confirmation, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/, allow_blank: true }
+  validates :password, :password_confirmation, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/ }, allow_blank: true
+  validates :family_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }, allow_blank: true
+  validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }, allow_blank: true
+  validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }, allow_blank: true
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }, allow_blank: true
 end
